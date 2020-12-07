@@ -1,8 +1,12 @@
+//toute les requêtes
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const stuffRoutes = require('./routes/stuff');
 
+const path = require('path');
+
+const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
 
 // Connexion mongoose
 mongoose.connect('mongodb+srv://jackwonka:Hercules17@cluster0.vm1rm.mongodb.net/test?retryWrites=true&w=majority',
@@ -22,7 +26,11 @@ app.use((req, res, next) => {
   });
 
 app.use(bodyParser.json());
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 //Mes routes
 app.use('/api/stuff', stuffRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
