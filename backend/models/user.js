@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
+
+// Valide l'email unique
 const uniqueValidator = require('mongoose-unique-validator');
 
+// Deux utilisateurs ne peuvent pas utiliser la même adresse mail
 const userSchema = mongoose.Schema({
+  // Adresse mail + user unique
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }
 });
 
-userSchema.plugin(uniqueValidator);
+userSchema.plugin(uniqueValidator);// Rajouter plugin uniquevalidateur à userschema
 
 module.exports = mongoose.model('User', userSchema);
