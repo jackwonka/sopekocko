@@ -1,7 +1,6 @@
-// Mongoose créer un modèle de données
 const mongoose = require('mongoose');
 
-// Modèle de données
+// Modéle de données
 const sauceSchema = mongoose.Schema({
     
     name: { type: String, required: true },
@@ -17,5 +16,4 @@ const sauceSchema = mongoose.Schema({
     usersDisliked: [String] ,
     
 });
-
 module.exports = mongoose.model('Sauce', sauceSchema);
