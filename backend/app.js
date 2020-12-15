@@ -9,16 +9,16 @@ const helmet = require("helmet");// Plugin de sécurité pour diverses attaques
 
 const app = express(); // Permet de créer une application express
 
-require('dotenv').config(); // Protection accés à la base de données
-const user = process.env.DB_USER;
-const pass = process.env.DB_PASS;
-// Mongoose connect
-mongoose.connect(`mongodb+srv://jackwonka:Hercules17@cluster0.vm1rm.mongodb.net/test?retryWrites=true&w=majority`,
-    { useNewUrlParser: true,
-     useUnifiedTopology: true 
-    })
-    .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée !'));
+require('dotenv').config(); 
+// Connextion mongoDB ,utilisation dotenv pour masquer mes identifiants, création du fichier .env pour stocker ces identifiants d'accés et placement dans .gitignore 
+mongoose.set('useCreateIndex', true);        
+mongoose.connect(process.env.MONGODB_CONNECT,  
+  {  
+    useNewUrlParser: true,             
+    useUnifiedTopology: true 
+  })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
 //CORS - Cross Origin Resource Sharing  La sécurité CORS est une mesure de sécurité par défaut pour empêcher l'utilisation de ressources par des origines non-autorisées.
