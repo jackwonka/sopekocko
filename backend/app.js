@@ -5,6 +5,7 @@ const saucesRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 const path = require('path');// Necessaire pour multer, importation de fichier comme les images
 const mongoSanitize = require('express-mongo-sanitize'); // Nettoie les données fournies par l'utilisateur pour empêcher l'injection d'opérateur MongoDB.
+const xss = require('xss-clean');
 const helmet = require("helmet");// Plugin de sécurité pour diverses attaques
 
 const app = express(); // Permet de créer une application express
@@ -32,8 +33,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json()); //Requêtes exploitables (Transformer le corps de la requête
 //en objet javascript utilisable grâce à la méthode json() de bodyParser)
-
-app.use(mongoSanitize()); // Pour empêcher l'injection de l'opérateur
+app.use(mongoSanitize());
+app.use(xss());
 app.use(helmet()); // Exécution du plugin de sécurité
 
 app.use('/images', express.static(path.join(__dirname, 'images'))); //Gestion de la ressource image de façon statique
