@@ -84,6 +84,7 @@ exports.getAllSauces = (req, res, next) => { // Récupère toutes les sauces
     .then( sauces => res.status(200).json(sauces))
     .catch( error => res.status(400).json({ error }))
 };
+
 exports.getOneSauce = (req, res, next) => {  // Récupère une seule sauce
     Sauce.findOne({_id : req.params.id})
     .then( sauce => res.status(200).json(sauce))

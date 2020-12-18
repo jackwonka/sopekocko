@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt'); // Chiffrement
 const User = require('../models/user'); 
-const jwt = require('jsonwebtoken'); // Token generateur
+const jwt = require('jsonwebtoken'); // Token generateur vérifie la requête authentifiée
 const emailValidator = require('email-validator');// Email validator package
 const passwordValidator = require('password-validator'); // Password validator package
 const MaskData = require('maskdata'); // Masquage des données 
@@ -22,7 +22,7 @@ if (!emailValidator.validate(req.body.email) || !passwordSchema.validate(req.bod
   
 } else if (emailValidator.validate(req.body.email) || passwordSchema.validate(req.body.password)) { // Si valide
     const maskedMail = MaskData.maskEmail2(req.body.email); // Masquage de adresse mail
-    bcrypt.hash(req.body.password, 10) // bcrypt hashe mot de passe
+    bcrypt.hash(req.body.password, 10) // bcrypt hash mot de passe
     .then( hash => {
       
         const user = new User ({ // Créé nouveau utilisateur

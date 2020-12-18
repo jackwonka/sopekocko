@@ -1,5 +1,5 @@
 
-const express = require('express');
+const express = require('express'); // Qui facilite la creation et gestion des serveus node.
 const router = express.Router();
 const sauceCtrl = require('../controllers/sauce');
 

@@ -3,11 +3,11 @@ const multer = require('multer');
 
 const MIME_TYPES = {
   'image/jpg': 'jpg',
-  'image/jpeg': 'jpg',
+  'image/jpeg': 'jpeg',
   'image/png': 'png'
 };
 
-//  Multer implémente les téléchargements de fichiers, les users télécharge les images d'articles à vendre 
+//  Multer implémente les téléchargements de fichiers, les utilisateurs télécharge les images d'articles à vendre 
 const storage = multer.diskStorage({
   // Destination des images
   destination: (req, file, callback) => {

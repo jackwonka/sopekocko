@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');// Mongoose qui facilite les interactions avec notre base de données MongoDB
 
 // Valide l'email unique
 const uniqueValidator = require('mongoose-unique-validator');

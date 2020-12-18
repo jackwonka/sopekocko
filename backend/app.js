@@ -1,10 +1,10 @@
-const express = require('express'); // Framework express
+const express = require('express'); // Framework express (une infrastructure d'applications Web Node.js)
 const mongoose = require('mongoose'); // Mongoose qui facilite les interactions avec notre base de données MongoDB
 const bodyParser = require('body-parser'); // Pour récuperer des données exploitable
 const saucesRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 const path = require('path');// Necessaire pour multer, importation de fichier comme les images
-const mongoSanitize = require('express-mongo-sanitize');
+const mongoSanitize = require('express-mongo-sanitize'); // Nettoie les données fournies par l'utilisateur pour empêcher l'injection d'opérateur MongoDB.
 const helmet = require("helmet");// Plugin de sécurité pour diverses attaques
 
 const app = express(); // Permet de créer une application express
@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGODB_CONNECT,
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
-//CORS - Cross Origin Resource Sharing  La sécurité CORS est une mesure de sécurité par défaut pour empêcher l'utilisation de ressources par des origines non-autorisées.
+//CORS - Cross Origin Resource Sharing  La sécurité CORS est une mesure de sécurité par défaut pour empêcher l'utilisation de ressources par des origines non-autorisées. (empêches les requetes malveillante.)
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 
 
 app.use(bodyParser.json()); //Requêtes exploitables (Transformer le corps de la requête
-    // en objet javascript utilisable grâce à la méthode json() de bodyParser)
+//en objet javascript utilisable grâce à la méthode json() de bodyParser)
 
 app.use(mongoSanitize()); // Pour empêcher l'injection de l'opérateur
 app.use(helmet()); // Exécution du plugin de sécurité

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // Package qui facilite les interactions avec notre base de données.
 
 // Modéle de données
 const sauceSchema = mongoose.Schema({
