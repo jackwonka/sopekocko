@@ -22,7 +22,7 @@ Technologies utilisées pour le backend:
 -Base de données MongoDB 
 -Framework Express 
 -Mongoose
-Fichier .env.ex à renommer .en renseigner la clé de connexion avec celle de votre base de données mongoDB.
+Fichier .env.exemple à renommer .env renseigner la clé de connexion avec celle de votre base de données mongoDB.
 Démarrer avec "node server" ou "nodemon".
 
 
